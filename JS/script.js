@@ -102,7 +102,11 @@ function dateValidation(value){
 /////// To check the code of government
 function cityValidation(value){
     for(city of cities){
-        if(Object.values(city) == value.slice(7,9)){
+        if(Object.values(city)[0] == Number(value.slice(7,9))){
+            console.log(Object.values(city)[0]);
+            console.log(typeof(Object.values(city)[0]));
+        console.log(Number(value.slice(7,9)));
+        console.log(typeof(Number(value.slice(7,9))));
             obj.Government = Object.keys(city)[0];
             return true;
         }
