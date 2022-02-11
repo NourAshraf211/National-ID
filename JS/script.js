@@ -30,6 +30,7 @@ let cities = [
 ];
 
 let container = document.querySelector('.info-container');
+let input = document.querySelector('input');
 let btn = document.querySelector('.btn');
 let p = document.createElement('p');
 
@@ -46,21 +47,26 @@ btn.addEventListener('click' , checkAllValidations);
 //The main function
 function checkAllValidations(){
     removeAllChildNodes(container);
-    var value = document.querySelector('input').value;
-    if(value && value.length == 14){
-        if((value[0] == 2 || value[0] == 3) && dateValidation(value) && cityValidation(value)){
-            if(Number(value.slice(9,13)) % 2 == 0){
-                obj.Gender = 'Female';
+    var value = input.value;
+    if(Number(value)){
+        if(value.length == 14){
+            if((value[0] == 2 || value[0] == 3) && dateValidation(value) && cityValidation(value)){
+                if(Number(value.slice(9,13)) % 2 == 0){
+                    obj.Gender = 'Female';
+                }else{
+                    obj.Gender = 'Male';
+                }
+                showInfo(obj);
             }else{
-                obj.Gender = 'Male';
+                p.innerHTML = "Please enter a valid National ID";
+                container.append(p);
             }
-            showInfo(obj);
         }else{
-            p.innerHTML = "Please enter a valid National ID";
+            p.innerHTML = "Please enter 14 digits";
             container.append(p);
         }
     }else{
-        p.innerHTML = "Please enter 14 degit";
+        p.innerHTML = "Please enter valid data!";
         container.append(p);
     }
 }
